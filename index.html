@@ -2,163 +2,992 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio of Panwar Sandeepsingh - Python, Django, AI/ML, Android and Web Developer.">
+    <meta name="author" content="Panwar Sandeepsingh">
 
-<title>Panwar Sandeepsingh | Developer Portfolio</title>
+    <title>Panwar Sandeepsingh | Developer Portfolio</title>
 
-<link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- Particle Background -->
-<div id="particles-js"></div>
+    <!-- ================= LOADING SCREEN ================= -->
 
-<header>
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">S</div>
+            <p>Loading Portfolio...</p>
+            <div class="loader-line">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
-<nav class="navbar">
+    <!-- ================= SCROLL PROGRESS ================= -->
 
-<h2 class="logo">Sandeepsingh</h2>
+    <div id="scroll-progress"></div>
 
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#skills">Skills</a></li>
-<li><a href="#certifications">Certifications</a></li>
-<li><a href="#projects">Projects</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
+    <!-- ================= BACKGROUND ================= -->
 
-</nav>
+    <div id="particles-js"></div>
 
-</header>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
 
-<section id="home" class="hero reveal">
+    <!-- ================= NAVBAR ================= -->
 
-<h1>Hello I'm <span class="name">Panwar Sandeepsingh</span></h1>
+    <header id="header">
 
-<h2>I am <span id="typing"></span></h2>
+        <nav class="navbar">
 
-<a href="#projects" class="btn">Explore My Work</a>
+            <a href="#home" class="logo">
+                <span>&lt;</span>Sandeepsingh World<span>/&gt;</span>
+            </a>
 
-</section>
+            <ul class="nav-links" id="navLinks">
 
-<section id="about" class="reveal">
+                <li>
+                    <a href="#home" class="nav-link active">Home</a>
+                </li>
 
-<h2>About Me</h2>
+                <li>
+                    <a href="#about" class="nav-link">About</a>
+                </li>
 
-<p>
-Passionate developer skilled in Python, Django, Web Development, AI-ML and Android Development.
-I enjoy building intelligent systems and real-world applications.
-</p>
+                <li>
+                    <a href="#skills" class="nav-link">Skills</a>
+                </li>
 
-</section>
+                <li>
+                    <a href="#certifications" class="nav-link">Certifications</a>
+                </li>
 
-<section id="skills" class="reveal">
+                <li>
+                    <a href="#projects" class="nav-link">Projects</a>
+                </li>
 
-<h2>Technical Skills</h2>
+                <li>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
 
-<div class="skill">
+            </ul>
 
-<p>Python</p>
-<div class="bar"><div class="progress python"></div></div>
+            <div class="nav-actions">
 
-<p>Django</p>
-<div class="bar"><div class="progress django"></div></div>
+                <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
 
-<p>Web Development</p>
-<div class="bar"><div class="progress web"></div></div>
+                <button id="menuToggle" class="menu-toggle" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
 
-<p>AI / Machine Learning</p>
-<div class="bar"><div class="progress ml"></div></div>
+            </div>
 
-<p>Android Development</p>
-<div class="bar"><div class="progress android"></div></div>
+        </nav>
 
-</div>
+    </header>
 
-</section>
+    <main>
 
-<section id="certifications" class="reveal">
+        <!-- ================= HERO ================= -->
 
-<h2>Certifications</h2>
+        <section id="home" class="hero">
 
-<div class="cert-container">
+            <div class="hero-content reveal">
 
-<div class="cert-card highlight">
-<h3>Google Gemini Student Certification</h3>
-</div>
+                <div class="availability">
+                    <span class="status-dot"></span>
+                    Available for opportunities
+                </div>
 
-<div class="cert-card highlight">
-<h3>RDBMS PostgreSQL – IIT Bombay</h3>
-</div>
+                <p class="hero-intro">Hello, I'm</p>
 
-<div class="cert-card highlight">
-<h3>Network Simulator – IIT Bombay</h3>
-</div>
+                <h1>
+                    Panwar
+                    <span>Sandeepsingh</span>
+                </h1>
 
-<div class="cert-card highlight">
-<h3>Java Training – IIT Bombay</h3>
-</div>
+                <h2>
+                    I am a
+                    <span id="typing"></span>
+                </h2>
 
-<div class="cert-card">
-<h3>35+ Additional Certifications</h3>
-<p>Generative AI, AI, ML, Project Management and Soft Skills.</p>
-</div>
+                <p class="hero-description">
+                    I build intelligent, interactive and real-world applications
+                    using modern technologies and creative problem solving.
+                </p>
 
-</div>
+                <div class="hero-buttons">
 
-</section>
+                    <a href="#projects" class="btn primary-btn">
+                        <i class="fas fa-rocket"></i>
+                        Explore My Work
+                    </a>
 
-<section id="projects" class="reveal">
+                    <a href="#contact" class="btn secondary-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Let's Connect
+                    </a>
 
-<h2>Projects</h2>
+                </div>
 
-<div class="project-container">
+                <div class="social-links">
 
-<div class="card">
-<h3>Real and Interactive AI Chatbot</h3>
-</div>
+                    
+                    <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
 
-<div class="card">
-<h3>Student Performance Prediction</h3>
-</div>
+                    <a href="mailto:sandeepsinghpanwar1906@gmail.com"
+                        aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
 
-<div class="card">
-<h3>Smart Student Attendance Management</h3>
-</div>
+                    
 
-<div class="card">
-<h3>Student Task Manager Android App</h3>
-</div>
+                </div>
 
-</div>
+            </div>
 
-</section>
+            <div class="hero-scroll">
+                <span>Scroll to explore</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
 
-<section id="contact" class="reveal">
+        </section>
 
-<h2>Contact</h2>
+        <!-- ================= STATS ================= -->
 
-<p>Email: sandeepsinghpanwar1906@gmail.com</p>
+        <section class="stats-section">
 
-</section>
+            <div class="stats-grid">
 
-<footer>
+                <div class="stat-card reveal">
+                    <i class="fas fa-code"></i>
+                    <h3 data-target="10">0</h3>
+                    <p>Projects</p>
+                </div>
 
-<p>© 2026 Panwar Sandeepsingh</p>
+                <div class="stat-card reveal">
+                    <i class="fas fa-certificate"></i>
+                    <h3 data-target="40">0</h3>
+                    <p>Certifications</p>
+                </div>
 
-</footer>
+                <div class="stat-card reveal">
+                    <i class="fas fa-layer-group"></i>
+                    <h3 data-target="5">0</h3>
+                    <p>Core Skills</p>
+                </div>
 
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+                <div class="stat-card reveal">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3 data-target="100">0</h3>
+                    <p>Learning Mindset %</p>
+                </div>
 
-<script src="script.js"></script>
+            </div>
+
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about" class="section">
+
+            <div class="section-heading reveal">
+
+                <span class="section-number">01</span>
+
+                <div>
+                    <p class="section-label">GET TO KNOW ME</p>
+                    <h2>About <span>Me</span></h2>
+                </div>
+
+            </div>
+
+            <div class="about-grid">
+
+                <div class="about-card glass-card reveal">
+
+                    <div class="profile-icon">
+                        <i class="fas fa-user-astronaut"></i>
+                    </div>
+
+                    <h3>Developer & Problem Solver</h3>
+
+                    <p>
+                        I am a passionate developer interested in building
+                        practical software solutions. My interests include
+                        Python, Django, Web Development, Artificial Intelligence,
+                        Machine Learning and Android Development.
+                    </p>
+
+                    <p>
+                        I enjoy learning new technologies, experimenting with
+                        ideas and converting concepts into functional projects.
+                    </p>
+
+                    <div class="about-tags">
+
+                        <span>Problem Solving</span>
+                        <span>Creative Thinking</span>
+                        <span>Continuous Learning</span>
+
+                    </div>
+
+                </div>
+
+                <div class="about-highlights">
+
+                    <div class="highlight-card reveal">
+                        <div class="highlight-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h3>AI & ML</h3>
+                            <p>Exploring intelligent applications and prediction systems.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card reveal">
+                        <div class="highlight-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div>
+                            <h3>Python Development</h3>
+                            <p>Building applications and solving problems with Python.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card reveal">
+                        <div class="highlight-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h3>Web Development</h3>
+                            <p>Creating responsive and interactive web experiences.</p>
+                        </div>
+                    </div>
+
+                    <div class="highlight-card reveal">
+                        <div class="highlight-icon">
+                            <i class="fas fa-mobile-screen-button"></i>
+                        </div>
+                        <div>
+                            <h3>Android</h3>
+                            <p>Interested in mobile applications and user-focused solutions.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= SKILLS ================= -->
+
+        <section id="skills" class="section">
+
+            <div class="section-heading reveal">
+
+                <span class="section-number">02</span>
+
+                <div>
+                    <p class="section-label">WHAT I WORK WITH</p>
+                    <h2>Technical <span>Skills</span></h2>
+                </div>
+
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skills-info glass-card reveal">
+
+                    <h3>My Technical Toolkit</h3>
+
+                    <p>
+                        I continuously improve my technical skills by working
+                        on projects and learning modern development practices.
+                    </p>
+
+                    <div class="tech-icons">
+
+                        <div>
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+
+                        <div>
+                            <i class="fab fa-java"></i>
+                            <span>Java</span>
+                        </div>
+
+                        <div>
+                            <i class="fab fa-html5"></i>
+                            <span>HTML</span>
+                        </div>
+
+                        <div>
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS</span>
+                        </div>
+
+                        <div>
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+
+                        <div>
+                            <i class="fas fa-database"></i>
+                            <span>Database</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="skills-bars glass-card reveal">
+
+                    <div class="skill-item">
+
+                        <div class="skill-header">
+                            <span>Python</span>
+                            <strong>90%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="progress python" data-width="90%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill-item">
+
+                        <div class="skill-header">
+                            <span>Django</span>
+                            <strong>85%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="progress django" data-width="85%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill-item">
+
+                        <div class="skill-header">
+                            <span>Web Development</span>
+                            <strong>85%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="progress web" data-width="85%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill-item">
+
+                        <div class="skill-header">
+                            <span>AI / Machine Learning</span>
+                            <strong>75%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="progress ml" data-width="75%"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="skill-item">
+
+                        <div class="skill-header">
+                            <span>Android Development</span>
+                            <strong>70%</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="progress android" data-width="70%"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ================= CERTIFICATIONS ================= -->
+
+        <section id="certifications" class="section">
+
+            <div class="section-heading reveal">
+
+                <span class="section-number">03</span>
+
+                <div>
+                    <p class="section-label">MY ACHIEVEMENTS</p>
+                    <h2>Certifi<span>cations</span></h2>
+                </div>
+
+            </div>
+
+            <div class="filter-buttons reveal">
+
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter-btn" data-filter="featured">
+                    Featured
+                </button>
+
+                <button class="filter-btn" data-filter="additional">
+                    Additional
+                </button>
+
+            </div>
+
+            <div class="cert-container">
+
+                <article class="cert-card featured reveal"
+                    data-category="featured">
+
+                    <div class="cert-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+
+                    <span class="cert-badge">FEATURED</span>
+
+                    <h3>Google Gemini Student Certification</h3>
+
+                    <p>Generative AI & Gemini learning certification.</p>
+
+                    <button class="details-btn"
+                        data-title="Google Gemini Student Certification"
+                        data-description="A certification focused on Google's Gemini and Generative AI concepts.">
+                        View Details
+                    </button>
+
+                </article>
+
+                <article class="cert-card featured reveal"
+                    data-category="featured">
+
+                    <div class="cert-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+
+                    <span class="cert-badge">FEATURED</span>
+
+                    <h3>RDBMS PostgreSQL – IIT Bombay</h3>
+
+                    <p>Database and relational database concepts.</p>
+
+                    <button class="details-btn"
+                        data-title="RDBMS PostgreSQL – IIT Bombay"
+                        data-description="Training focused on relational database management systems and PostgreSQL.">
+                        View Details
+                    </button>
+
+                </article>
+
+                <article class="cert-card featured reveal"
+                    data-category="featured">
+
+                    <div class="cert-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+
+                    <span class="cert-badge">FEATURED</span>
+
+                    <h3>Network Simulator – IIT Bombay</h3>
+
+                    <p>Networking concepts and simulator-based learning.</p>
+
+                    <button class="details-btn"
+                        data-title="Network Simulator – IIT Bombay"
+                        data-description="Training related to computer networking and network simulation concepts.">
+                        View Details
+                    </button>
+
+                </article>
+
+                <article class="cert-card featured reveal"
+                    data-category="featured">
+
+                    <div class="cert-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+
+                    <span class="cert-badge">FEATURED</span>
+
+                    <h3>Java Training – IIT Bombay</h3>
+
+                    <p>Java programming and application development.</p>
+
+                    <button class="details-btn"
+                        data-title="Java Training – IIT Bombay"
+                        data-description="Java programming training covering core programming concepts.">
+                        View Details
+                    </button>
+
+                </article>
+
+                <article class="cert-card reveal"
+                    data-category="additional">
+
+                    <div class="cert-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+
+                    <span class="cert-badge additional-badge">40+</span>
+
+                    <h3>Additional Certifications</h3>
+
+                    <p>
+                        Generative AI, AI, ML, Project Management
+                        and Soft Skills.
+                    </p>
+
+                    <button class="details-btn"
+                        data-title="40+ Additional Certifications"
+                        data-description="Additional learning achievements covering Generative AI, Artificial Intelligence, Machine Learning, Project Management and Soft Skills.">
+                        View Details
+                    </button>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ================= PROJECTS ================= -->
+
+        <section id="projects" class="section">
+
+            <div class="section-heading reveal">
+
+                <span class="section-number">04</span>
+
+                <div>
+                    <p class="section-label">WHAT I'VE BUILT</p>
+                    <h2>Featured <span>Projects</span></h2>
+                </div>
+
+            </div>
+
+            <div class="filter-buttons reveal">
+
+                <button class="project-filter active"
+                    data-project-filter="all">
+                    All
+                </button>
+
+                <button class="project-filter"
+                    data-project-filter="python">
+                    Python
+                </button>
+
+                <button class="project-filter"
+                    data-project-filter="web">
+                    Web
+                </button>
+
+                <button class="project-filter"
+                    data-project-filter="android">
+                    Android
+                </button>
+
+                <button class="project-filter"
+                    data-project-filter="ai">
+                    AI / ML
+                </button>
+
+            </div>
+
+            <div class="project-container">
+
+                <article class="project-card reveal"
+                    data-category="ai python">
+
+                    <div class="project-number">01</div>
+
+                    <div class="project-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">AI / PYTHON</p>
+
+                        <h3>Real and Interactive AI Chatbot</h3>
+
+                        <p>
+                            An interactive chatbot project designed to
+                            provide intelligent responses and create
+                            a conversational user experience.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>AI</span>
+                            <span>API</span>
+                        </div>
+
+                        <button class="project-details"
+                            data-title="Real and Interactive AI Chatbot"
+                            data-description="An AI-powered conversational project focused on interactive communication and intelligent responses."
+                            data-tech="Python • AI • API">
+                            <span>View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <article class="project-card reveal"
+                    data-category="ai python">
+
+                    <div class="project-number">02</div>
+
+                    <div class="project-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">MACHINE LEARNING</p>
+
+                        <h3>Student Performance Prediction</h3>
+
+                        <p>
+                            A machine learning project designed to
+                            analyze student information and predict
+                            academic performance.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>ML</span>
+                            <span>Scikit-learn</span>
+                        </div>
+
+                        <button class="project-details"
+                            data-title="Student Performance Prediction"
+                            data-description="A machine learning project that uses student-related data to explore and predict academic performance."
+                            data-tech="Python • Machine Learning • Scikit-learn">
+                            <span>View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <article class="project-card reveal"
+                    data-category="web python">
+
+                    <div class="project-number">03</div>
+
+                    <div class="project-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">WEB APPLICATION</p>
+
+                        <h3>Smart Student Attendance Management</h3>
+
+                        <p>
+                            A student attendance management system
+                            designed to simplify attendance tracking
+                            and organization.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>Web</span>
+                        </div>
+
+                        <button class="project-details"
+                            data-title="Smart Student Attendance Management"
+                            data-description="A web-based attendance management concept designed to make student attendance tracking more organized."
+                            data-tech="Python • Django • HTML • CSS">
+                            <span>View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+                <article class="project-card reveal"
+                    data-category="android">
+
+                    <div class="project-number">04</div>
+
+                    <div class="project-icon">
+                        <i class="fas fa-mobile-screen-button"></i>
+                    </div>
+
+                    <div class="project-content">
+
+                        <p class="project-type">ANDROID APPLICATION</p>
+
+                        <h3>Student Task Manager Android App</h3>
+
+                        <p>
+                            A mobile application concept for organizing
+                            student tasks and improving daily productivity.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>Android</span>
+                            <span>Java</span>
+                            <span>UI</span>
+                        </div>
+
+                        <button class="project-details"
+                            data-title="Student Task Manager Android App"
+                            data-description="An Android application concept focused on helping students organize and manage daily tasks."
+                            data-tech="Android • Java • UI">
+                            <span>View Project</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+
+        <section id="contact" class="section">
+
+            <div class="section-heading reveal">
+
+                <span class="section-number">05</span>
+
+                <div>
+                    <p class="section-label">LET'S CONNECT</p>
+                    <h2>Contact <span>Me</span></h2>
+                </div>
+
+            </div>
+
+            <div class="contact-grid">
+
+                <div class="contact-info reveal">
+
+                    <div class="contact-intro">
+                        <span class="mini-label">HAVE A PROJECT?</span>
+
+                        <h3>
+                            Let's build something
+                            <span>amazing.</span>
+                        </h3>
+
+                        <p>
+                            Whether you have an idea, project opportunity,
+                            collaboration proposal or simply want to connect,
+                            feel free to reach out.
+                        </p>
+                    </div>
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+
+                        <div>
+                            <span>Email</span>
+                            <a href="mailto:sandeepsinghpanwar1906@gmail.com">
+                                sandeepsinghpanwar1906@gmail.com
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <button id="copyEmail" class="copy-email">
+                        <i class="fas fa-copy"></i>
+                        Copy Email
+                    </button>
+
+                </div>
+
+                <form id="contactForm" class="contact-form glass-card reveal">
+
+                    <div class="input-group">
+
+                        <label for="name">Your Name</label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your name"
+                            required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="email">Your Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required>
+
+                    </div>
+
+                    <div class="input-group">
+
+                        <label for="message">Message</label>
+
+                        <textarea
+                            id="message"
+                            name="message"
+                            rows="6"
+                            placeholder="Tell me about your project..."
+                            required></textarea>
+
+                    </div>
+
+                    <button type="submit" class="btn primary-btn submit-btn">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-content">
+
+            <a href="#home" class="logo">
+                <span>&lt;</span>Sandeepsingh World<span>/&gt;</span>
+            </a>
+
+            <p>
+                Designed & built by Panwar Sandeepsingh
+            </p>
+
+            <div class="footer-socials">
+
+               
+
+                <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <a href="mailto:sandeepsinghpanwar1906@gmail.com"
+                    aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Panwar Sandeepsingh. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+    <!-- ================= MODAL ================= -->
+
+    <div id="detailsModal" class="modal">
+
+        <div class="modal-content">
+
+            <button class="modal-close" aria-label="Close">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <div class="modal-icon">
+                <i class="fas fa-layer-group"></i>
+            </div>
+
+            <p class="modal-label">DETAILS</p>
+
+            <h2 id="modalTitle">Project Title</h2>
+
+            <p id="modalDescription">
+                Project description.
+            </p>
+
+            <div id="modalTech" class="tech-stack modal-tech"></div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= TOAST ================= -->
+
+    <div id="toast" class="toast">
+
+        <i class="fas fa-circle-check"></i>
+
+        <span id="toastMessage">
+            Success!
+        </span>
+
+    </div>
+
+    <!-- ================= BACK TO TOP ================= -->
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+
+        <i class="fas fa-arrow-up"></i>
+
+    </button>
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
