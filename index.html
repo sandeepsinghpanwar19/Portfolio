@@ -1,206 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!--
+==============================================================================
+  PANWAR SANDEEPSINGH — DEVELOPER PORTFOLIO  (V3.0)
+  FILE 1 OF 3  →  index.html   (structure + content)
+  Other files  →  style.css (design)   |   script.js (animations & logic)
+==============================================================================
+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  QUICK EDIT GUIDE  (search for these tags with Ctrl+F)                  │
+  ├─────────────────────────────────────────────────────────────────────────┤
+  │  [EDIT-META]      Page title, description, social-share preview         │
+  │  [EDIT-NAV]       Navigation menu links                                 │
+  │  [EDIT-HERO]      Name, intro text, buttons, social links, orbit icons  │
+  │  [EDIT-MARQUEE]   The scrolling technology strip                        │
+  │  [EDIT-STATS]     The 4 animated number counters                        │
+  │  [EDIT-ABOUT]     About paragraphs, tags, highlight cards               │
+  │  [EDIT-SKILLS]    Tech icons and skill percentage bars                  │
+  │  [ADD-CERT]       Add a new certification card                          │
+  │  [ADD-PROJECT]    Add a new project card                                │
+  │  [EDIT-CONTACT]   Email, contact text                                   │
+  │  [EDIT-FOOTER]    Footer text and social icons                          │
+  ├─────────────────────────────────────────────────────────────────────────┤
+  │  Other places to edit:                                                  │
+  │   • Typing roles ("Python Developer"...)  → script.js  (CONFIG.roles)   │
+  │   • Email / form service                  → script.js  (CONFIG)         │
+  │   • Colors, fonts, spacing                → style.css  (:root)          │
+  └─────────────────────────────────────────────────────────────────────────┘
+
+  ICONS: this site uses Font Awesome 6 (free). Find icons at
+         https://fontawesome.com/icons  and use them like:
+         <i class="fas fa-code"></i>   (solid)
+         <i class="fab fa-github"></i> (brands)
+
+  You do NOT need to touch script.js when adding new certificates or
+  projects — the filters, modal, animations, numbering and counters
+  pick up new cards automatically.
+-->
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Mobile: full-screen layout, respects phone notches (viewport-fit=cover) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <!-- ===================== [EDIT-META] ===================== -->
+    <title>Panwar Sandeepsingh | Developer Portfolio</title>
     <meta name="description"
         content="Portfolio of Panwar Sandeepsingh - Python, Django, AI/ML, Android and Web Developer.">
     <meta name="author" content="Panwar Sandeepsingh">
 
-    <title>Panwar Sandeepsingh | Developer Portfolio</title>
+    <!-- Browser bar colour on phones (script.js updates it when the theme changes) -->
+    <meta name="theme-color" content="#050b16">
+    <meta name="color-scheme" content="dark light">
 
+    <!-- Social-share preview (WhatsApp / LinkedIn / Twitter).
+         To add a preview image later, add:
+         <meta property="og:image" content="https://YOUR-SITE/preview.png"> -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Panwar Sandeepsingh | Developer Portfolio">
+    <meta property="og:description"
+        content="Python, Django, AI/ML, Android and Web Developer. Explore my projects and certifications.">
+
+    <!-- Favicon (inline SVG "S" logo, no extra file needed) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Arial' font-weight='800' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+
+    <!-- Fonts: Space Grotesk (headings) · Inter (text) · JetBrains Mono (code look) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
         rel="stylesheet">
 
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- Main stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Runs BEFORE the page paints so there is no dark→light flash.
+         1) "js" class  → lets CSS hide elements that will be revealed by JavaScript
+         2) saved theme → restores the visitor's last dark/light choice -->
+    <script>
+        document.documentElement.classList.add("js");
+        try {
+            var t = localStorage.getItem("portfolio-theme");
+            if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+        } catch (e) { }
+    </script>
+
+    <!-- If JavaScript is disabled, show everything normally -->
+    <noscript>
+        <style>
+            .js .reveal,
+            .js .hero-anim,
+            .js .char {
+                opacity: 1 !important;
+                translate: none !important;
+                transform: none !important;
+                filter: none !important;
+            }
+
+            #loader {
+                display: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body>
 
-    <!-- ================= LOADING SCREEN ================= -->
+    <!-- Keyboard users: press Tab once to reveal this shortcut -->
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <div id="loader">
+    <!-- =====================================================================
+         LOADING SCREEN  (progress % is animated by script.js)
+    ====================================================================== -->
+    <div id="loader" aria-hidden="true">
         <div class="loader-content">
-            <div class="loader-logo">S</div>
-            <p>Loading Portfolio...</p>
-            <div class="loader-line">
-                <span></span>
-            </div>
+            <div class="loader-logo"><span>S</span></div>
+            <p class="loader-name">Panwar Sandeepsingh</p>
+            <p class="loader-sub">Loading Portfolio...</p>
+            <div class="loader-line"><span id="loaderBar"></span></div>
+            <p class="loader-percent"><span id="loaderPercent">0</span>%</p>
         </div>
     </div>
 
-    <!-- ================= SCROLL PROGRESS ================= -->
-
+    <!-- =====================================================================
+         GLOBAL LAYERS  (progress bar, background, custom cursor)
+    ====================================================================== -->
     <div id="scroll-progress"></div>
 
-    <!-- ================= BACKGROUND ================= -->
+    <!-- Animated background: aurora glows + grid + interactive particle canvas -->
+    <div class="bg-layers" aria-hidden="true">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+        <div class="bg-grid"></div>
+        <canvas id="bg-canvas"></canvas>
+    </div>
 
-    <div id="particles-js"></div>
+    <!-- Custom cursor (desktop mouse only — auto-disabled on phones/tablets) -->
+    <div id="cursor-dot" aria-hidden="true"></div>
+    <div id="cursor-ring" aria-hidden="true"></div>
 
-    <div class="background-glow glow-one"></div>
-    <div class="background-glow glow-two"></div>
-
-    <!-- ================= NAVBAR ================= -->
-
+    <!-- =====================================================================
+         NAVBAR                                          [EDIT-NAV]
+         To add a page section link: add an <li> below, and give the target
+         section a matching id (e.g. <section id="blog">) .
+    ====================================================================== -->
     <header id="header">
 
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Main navigation">
 
-            <a href="#home" class="logo">
+            <a href="#home" class="logo" aria-label="Go to top">
                 <span>&lt;</span>Sandeepsingh World<span>/&gt;</span>
             </a>
 
             <ul class="nav-links" id="navLinks">
+                <!-- Sliding highlight pill (positioned by script.js) -->
+                <li class="nav-indicator" aria-hidden="true"></li>
 
-                <li>
-                    <a href="#home" class="nav-link active">Home</a>
+                <!-- style="--i:N" controls the stagger order in the mobile menu -->
+                <li style="--i:1"><a href="#home" class="nav-link active">Home</a></li>
+                <li style="--i:2"><a href="#about" class="nav-link">About</a></li>
+                <li style="--i:3"><a href="#skills" class="nav-link">Skills</a></li>
+                <li style="--i:4"><a href="#certifications" class="nav-link">Certifications</a></li>
+                <li style="--i:5"><a href="#projects" class="nav-link">Projects</a></li>
+                <li style="--i:6"><a href="#contact" class="nav-link">Contact</a></li>
+
+                <!-- Only visible inside the mobile menu -->
+                <li class="nav-mobile-footer" style="--i:7">
+                    <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn"
+                        target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/sandeepsinghpanwar19/" aria-label="GitHub" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="mailto:sandeepsinghpanwar1906@gmail.com" aria-label="Email"><i
+                            class="fas fa-envelope"></i></a>
                 </li>
-
-                <li>
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-
-                <li>
-                    <a href="#skills" class="nav-link">Skills</a>
-                </li>
-
-                <li>
-                    <a href="#certifications" class="nav-link">Certifications</a>
-                </li>
-
-                <li>
-                    <a href="#projects" class="nav-link">Projects</a>
-                </li>
-
-                <li>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
-
             </ul>
 
             <div class="nav-actions">
-
                 <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
 
-                <button id="menuToggle" class="menu-toggle" aria-label="Open menu">
+                <button id="menuToggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false"
+                    aria-controls="navLinks">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-
             </div>
 
         </nav>
 
     </header>
 
-    <main>
+    <main id="main">
 
-        <!-- ================= HERO ================= -->
-
+        <!-- =================================================================
+             HERO                                         [EDIT-HERO]
+             The typing roles ("Python Developer", ...) live in script.js
+             → CONFIG.roles
+        ================================================================== -->
         <section id="home" class="hero">
 
-            <div class="hero-content reveal">
+            <div class="hero-grid">
 
-                <div class="availability">
-                    <span class="status-dot"></span>
-                    Available for opportunities
+                <!-- ---------- Left: text ---------- -->
+                <div class="hero-content">
+
+                    <div class="availability hero-anim" style="--i:0">
+                        <span class="status-dot"></span>
+                        Available for opportunities
+                    </div>
+
+                    <p class="hero-intro hero-anim" style="--i:1">Hello, I'm</p>
+
+                    <!-- Each line is split into animated letters by script.js.
+                         Keep the two <span class="name-line"> blocks. -->
+                    <h1 id="heroName" aria-label="Panwar Sandeepsingh">
+                        <span class="name-line" data-split>Panwar</span>
+                        <span class="name-line name-accent" data-split>Sandeepsingh</span>
+                    </h1>
+
+                    <h2 class="hero-role hero-anim" style="--i:5">
+                        I am a
+                        <span id="typing"></span><span class="caret" aria-hidden="true"></span>
+                    </h2>
+
+                    <p class="hero-description hero-anim" style="--i:6">
+                        I build intelligent, interactive and real-world applications
+                        using modern technologies and creative problem solving.
+                    </p>
+
+                    <div class="hero-buttons hero-anim" style="--i:7">
+
+                        <a href="#projects" class="btn primary-btn magnetic">
+                            <i class="fas fa-rocket"></i>
+                            <span>Explore My Work</span>
+                        </a>
+
+                        <a href="#contact" class="btn secondary-btn magnetic">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Let's Connect</span>
+                        </a>
+
+                        <!-- RESUME BUTTON (optional) — when you have a resume file, put it in
+                             the same folder, then remove the comment markers around this block:
+
+                        <a href="resume.pdf" download class="btn secondary-btn magnetic">
+                            <i class="fas fa-file-arrow-down"></i>
+                            <span>Download Resume</span>
+                        </a>
+                        -->
+
+                    </div>
+
+                    <!-- Social links. To add Instagram etc., copy one <a> and change
+                         href + icon (e.g. fab fa-instagram) -->
+                    <div class="social-links hero-anim" style="--i:8">
+
+                        <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn"
+                            target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+
+                        <a href="https://github.com/sandeepsinghpanwar19/" aria-label="GitHub" target="_blank"
+                            rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+
+                        <a href="mailto:sandeepsinghpanwar1906@gmail.com" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+
+                    </div>
+
                 </div>
 
-                <p class="hero-intro">Hello, I'm</p>
+                <!-- ---------- Right: orbiting tech-stack visual ----------
+                     Icons sit on rotating rings. To change an icon, edit the
+                     <i class="..."> inside an .orb-item.
+                     style="--x:..%; --y:..%" = position on the ring (leave as is). -->
+                <div class="hero-visual hero-anim" style="--i:4" aria-hidden="true">
 
-                <h1>
-                    Panwar
-                    <span>Sandeepsingh</span>
-                </h1>
+                    <div class="orbit" id="orbit">
 
-                <h2>
-                    I am a
-                    <span id="typing"></span>
-                </h2>
+                        <div class="orbit-glow"></div>
 
-                <p class="hero-description">
-                    I build intelligent, interactive and real-world applications
-                    using modern technologies and creative problem solving.
-                </p>
+                        <!-- Inner ring -->
+                        <div class="ring ring-1">
+                            <span class="orb-item" style="--x:50%;--y:0%"><i class="fab fa-python"></i></span>
+                            <span class="orb-item" style="--x:50%;--y:100%"><i class="fas fa-database"></i></span>
+                        </div>
 
-                <div class="hero-buttons">
+                        <!-- Middle ring -->
+                        <div class="ring ring-2">
+                            <span class="orb-item" style="--x:50%;--y:0%"><i class="fab fa-js"></i></span>
+                            <span class="orb-item" style="--x:93.3%;--y:75%"><i class="fab fa-html5"></i></span>
+                            <span class="orb-item" style="--x:6.7%;--y:75%"><i class="fab fa-css3-alt"></i></span>
+                        </div>
 
-                    <a href="#projects" class="btn primary-btn">
-                        <i class="fas fa-rocket"></i>
-                        Explore My Work
-                    </a>
+                        <!-- Outer ring -->
+                        <div class="ring ring-3">
+                            <span class="orb-item" style="--x:50%;--y:0%"><i class="fab fa-java"></i></span>
+                            <span class="orb-item" style="--x:93.3%;--y:75%"><i class="fab fa-android"></i></span>
+                            <span class="orb-item" style="--x:6.7%;--y:75%"><i class="fas fa-brain"></i></span>
+                        </div>
 
-                    <a href="#contact" class="btn secondary-btn">
-                        <i class="fas fa-paper-plane"></i>
-                        Let's Connect
-                    </a>
+                        <!-- Centre logo (click it for a particle burst!) -->
+                        <button class="orbit-core" id="orbitCore" tabindex="-1" aria-hidden="true">
+                            <span>PS</span>
+                        </button>
 
-                </div>
+                    </div>
 
-                <div class="social-links">
-
-                    <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn"
-                        target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-
-                    <a href="https://github.com/sandeepsinghpanwar19/" aria-label="GitHub" target="_blank"
-                        rel="noopener noreferrer">
-                        <i class="fab fa-github"></i>
-                    </a>
-
-                    <a href="mailto:sandeepsinghpanwar1906@gmail.com" aria-label="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-
+                    <!-- Floating code card (hidden on small phones) -->
+                    <div class="code-card">
+                        <div class="code-dots"><i></i><i></i><i></i><span>developer.js</span></div>
+                        <pre><code><span class="c-k">const</span> <span class="c-v">sandeep</span> = {
+  <span class="c-p">role</span>: <span class="c-s">"Developer"</span>,
+  <span class="c-p">stack</span>: [<span class="c-s">"Python"</span>, <span class="c-s">"Django"</span>],
+  <span class="c-p">focus</span>: [<span class="c-s">"AI/ML"</span>, <span class="c-s">"Android"</span>],
+  <span class="c-p">available</span>: <span class="c-b">true</span>
+};</code></pre>
+                    </div>
 
                 </div>
 
             </div>
 
-            <div class="hero-scroll">
+            <a href="#about" class="hero-scroll hero-anim" style="--i:9" aria-label="Scroll to explore">
+                <span class="mouse"><span></span></span>
                 <span>Scroll to explore</span>
-                <i class="fas fa-chevron-down"></i>
-            </div>
+            </a>
 
         </section>
 
-        <!-- ================= STATS ================= -->
+        <!-- =================================================================
+             MARQUEE — scrolling technology strip            [EDIT-MARQUEE]
+             To add a technology: copy one <span> and change icon + name.
+             (script.js duplicates this row automatically for a seamless loop)
+        ================================================================== -->
+        <section class="marquee" aria-label="Technologies I work with">
+            <div class="marquee-track" data-marquee>
+                <span><i class="fab fa-python"></i> Python</span>
+                <span><i class="fas fa-server"></i> Django</span>
+                <span><i class="fab fa-java"></i> Java</span>
+                <span><i class="fab fa-html5"></i> HTML</span>
+                <span><i class="fab fa-css3-alt"></i> CSS</span>
+                <span><i class="fab fa-js"></i> JavaScript</span>
+                <span><i class="fab fa-react"></i> React</span>
+                <span><i class="fab fa-node-js"></i> Node.js</span>
+                <span><i class="fas fa-database"></i> SQLite</span>
+                <span><i class="fas fa-brain"></i> AI / ML</span>
+                <span><i class="fab fa-android"></i> Android</span>
+            </div>
+        </section>
 
+        <!-- =================================================================
+             STATS                                          [EDIT-STATS]
+             data-target="60"           → counts up to 60 (adds "+" at the end)
+             data-target="100"          → shows "%" instead of "+"
+             data-count=".project-card" → counts how many project cards exist
+                                          (so it updates when you add projects)
+        ================================================================== -->
         <section class="stats-section">
 
-            <div class="stats-grid">
+            <div class="stats-grid" data-stagger>
 
-                <div class="stat-card reveal">
+                <div class="stat-card reveal spot">
                     <i class="fas fa-code"></i>
-                    <h3 data-target="5">0</h3>
+                    <h3 data-count=".project-card">0</h3>
                     <p>Projects</p>
                 </div>
 
-                <div class="stat-card reveal">
+                <div class="stat-card reveal spot">
                     <i class="fas fa-certificate"></i>
                     <h3 data-target="60">0</h3>
                     <p>Certifications</p>
                 </div>
 
-                <div class="stat-card reveal">
+                <div class="stat-card reveal spot">
                     <i class="fas fa-layer-group"></i>
                     <h3 data-target="5">0</h3>
                     <p>Core Skills</p>
                 </div>
 
-                <div class="stat-card reveal">
+                <div class="stat-card reveal spot">
                     <i class="fas fa-lightbulb"></i>
                     <h3 data-target="100">0</h3>
                     <p>Learning Mindset %</p>
@@ -210,8 +400,9 @@
 
         </section>
 
-        <!-- ================= ABOUT ================= -->
-
+        <!-- =================================================================
+             ABOUT                                          [EDIT-ABOUT]
+        ================================================================== -->
         <section id="about" class="section">
 
             <div class="section-heading reveal">
@@ -219,7 +410,7 @@
                 <span class="section-number">01</span>
 
                 <div>
-                    <p class="section-label">GET TO KNOW ME</p>
+                    <p class="section-label" data-scramble>GET TO KNOW ME</p>
                     <h2>About <span>Me</span></h2>
                 </div>
 
@@ -227,7 +418,7 @@
 
             <div class="about-grid">
 
-                <div class="about-card glass-card reveal">
+                <div class="about-card glass-card reveal spot tilt" data-reveal="left">
 
                     <div class="profile-icon">
                         <i class="fas fa-user-astronaut"></i>
@@ -248,18 +439,17 @@
                     </p>
 
                     <div class="about-tags">
-
                         <span>Problem Solving</span>
                         <span>Creative Thinking</span>
                         <span>Continuous Learning</span>
-
                     </div>
 
                 </div>
 
-                <div class="about-highlights">
+                <!-- Highlight cards. To add one: copy a whole .highlight-card block. -->
+                <div class="about-highlights" data-stagger>
 
-                    <div class="highlight-card reveal">
+                    <div class="highlight-card reveal spot" data-reveal="right">
                         <div class="highlight-icon">
                             <i class="fas fa-brain"></i>
                         </div>
@@ -269,7 +459,7 @@
                         </div>
                     </div>
 
-                    <div class="highlight-card reveal">
+                    <div class="highlight-card reveal spot" data-reveal="right">
                         <div class="highlight-icon">
                             <i class="fab fa-python"></i>
                         </div>
@@ -279,7 +469,7 @@
                         </div>
                     </div>
 
-                    <div class="highlight-card reveal">
+                    <div class="highlight-card reveal spot" data-reveal="right">
                         <div class="highlight-icon">
                             <i class="fas fa-globe"></i>
                         </div>
@@ -289,7 +479,7 @@
                         </div>
                     </div>
 
-                    <div class="highlight-card reveal">
+                    <div class="highlight-card reveal spot" data-reveal="right">
                         <div class="highlight-icon">
                             <i class="fas fa-mobile-screen-button"></i>
                         </div>
@@ -305,8 +495,9 @@
 
         </section>
 
-        <!-- ================= SKILLS ================= -->
-
+        <!-- =================================================================
+             SKILLS                                         [EDIT-SKILLS]
+        ================================================================== -->
         <section id="skills" class="section">
 
             <div class="section-heading reveal">
@@ -314,7 +505,7 @@
                 <span class="section-number">02</span>
 
                 <div>
-                    <p class="section-label">WHAT I WORK WITH</p>
+                    <p class="section-label" data-scramble>WHAT I WORK WITH</p>
                     <h2>Technical <span>Skills</span></h2>
                 </div>
 
@@ -322,7 +513,7 @@
 
             <div class="skills-grid">
 
-                <div class="skills-info glass-card reveal">
+                <div class="skills-info glass-card reveal spot" data-reveal="left">
 
                     <h3>My Technical Toolkit</h3>
 
@@ -331,6 +522,7 @@
                         on projects and learning modern development practices.
                     </p>
 
+                    <!-- Tech icons. To add one: copy a <div> and change icon + name. -->
                     <div class="tech-icons">
 
                         <div>
@@ -367,71 +559,62 @@
 
                 </div>
 
-                <div class="skills-bars glass-card reveal">
+                <!-- Skill bars.
+                     ► To add a skill: copy one .skill-item block, then change:
+                       1) the name in <span>
+                       2) the % in <strong> AND in data-width (keep them equal)
+                       3) the colour class on .progress  (python | django | web | ml | android)
+                          — or make a new colour in style.css → "SKILL BAR COLOURS" -->
+                <div class="skills-bars glass-card reveal spot" data-reveal="right">
 
                     <div class="skill-item">
-
                         <div class="skill-header">
                             <span>Python</span>
                             <strong>90%</strong>
                         </div>
-
                         <div class="bar">
                             <div class="progress python" data-width="90%"></div>
                         </div>
-
                     </div>
 
                     <div class="skill-item">
-
                         <div class="skill-header">
                             <span>Django</span>
                             <strong>85%</strong>
                         </div>
-
                         <div class="bar">
                             <div class="progress django" data-width="85%"></div>
                         </div>
-
                     </div>
 
                     <div class="skill-item">
-
                         <div class="skill-header">
                             <span>Web Development</span>
                             <strong>85%</strong>
                         </div>
-
                         <div class="bar">
                             <div class="progress web" data-width="85%"></div>
                         </div>
-
                     </div>
 
                     <div class="skill-item">
-
                         <div class="skill-header">
                             <span>AI / Machine Learning</span>
                             <strong>75%</strong>
                         </div>
-
                         <div class="bar">
                             <div class="progress ml" data-width="75%"></div>
                         </div>
-
                     </div>
 
                     <div class="skill-item">
-
                         <div class="skill-header">
                             <span>Android Development</span>
                             <strong>70%</strong>
                         </div>
-
                         <div class="bar">
                             <div class="progress android" data-width="70%"></div>
                         </div>
-
                     </div>
 
                 </div>
@@ -440,8 +623,34 @@
 
         </section>
 
-        <!-- ================= CERTIFICATIONS ================= -->
+        <!-- =================================================================
+             CERTIFICATIONS                                  [ADD-CERT]
 
+             ► HOW TO ADD A NEW CERTIFICATE
+               1. Copy everything between  "START CERT CARD"  and  "END CERT CARD"
+               2. Paste it just before the "ADDITIONAL CERTIFICATIONS" card
+               3. Change: icon, title, short text, and the data-title /
+                  data-description inside the button
+               4. data-category="featured"  → shows under the "Featured" filter
+                  data-category="additional" → shows under "Additional"
+               That's it — filter + popup work automatically.
+
+             ---------------------- START CERT CARD (template) ----------------------
+             <article class="cert-card featured reveal spot tilt" data-category="featured">
+                 <div class="cert-icon"><i class="fas fa-award"></i></div>
+                 <span class="cert-badge">FEATURED</span>
+                 <h3>Certificate Title – Issuer</h3>
+                 <p>Short line shown on the card.</p>
+                 <button class="details-btn" data-title="Certificate Title – Issuer"
+                     data-description="Longer text shown in the pop-up window.">
+                     View Details
+                 </button>
+             </article>
+             ----------------------- END CERT CARD (template) -----------------------
+
+             OPTIONAL pop-up extras on any button:
+               data-link="https://..."   → adds a "Open link" button in the pop-up
+        ================================================================== -->
         <section id="certifications" class="section">
 
             <div class="section-heading reveal">
@@ -449,301 +658,228 @@
                 <span class="section-number">03</span>
 
                 <div>
-                    <p class="section-label">MY ACHIEVEMENTS</p>
+                    <p class="section-label" data-scramble>MY ACHIEVEMENTS</p>
                     <h2>Certifi<span>cations</span></h2>
                 </div>
 
             </div>
 
-            <div class="filter-buttons reveal">
-
-                <button class="filter-btn active" data-filter="all">
-                    All
-                </button>
-
-                <button class="filter-btn" data-filter="featured">
-                    Featured
-                </button>
-
-                <button class="filter-btn" data-filter="additional">
-                    Additional
-                </button>
-
+            <!-- Filter buttons: data-filter must match a data-category value (or "all") -->
+            <div class="filter-buttons reveal" role="group" aria-label="Filter certifications">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="featured">Featured</button>
+                <button class="filter-btn" data-filter="additional">Additional</button>
             </div>
 
-            <div class="cert-container">
+            <div class="cert-container" data-stagger>
 
                 <!-- 01. INFOSYS -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-shield-alt"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Cybersecurity – Infosys</h3>
-
                     <p>
                         Cybersecurity concepts, security awareness and
                         fundamentals of protecting digital systems.
                     </p>
-
                     <button class="details-btn" data-title="Cybersecurity – Infosys"
                         data-description="A cybersecurity certification from Infosys focused on cybersecurity concepts, security awareness and fundamental practices for protecting digital systems.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 02. IBM -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-brain"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Large Language Models – IBM</h3>
-
                     <p>
                         Learning focused on Large Language Models and
                         Generative AI concepts.
                     </p>
-
                     <button class="details-btn" data-title="Large Language Models – IBM"
                         data-description="An IBM certification focused on Large Language Models (LLMs), Generative AI concepts and the fundamentals behind modern AI language technologies.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 03. NSDC -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-code"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Web Development – NSDC</h3>
-
                     <p>
                         Web development concepts and practical
                         application development skills.
                     </p>
-
                     <button class="details-btn" data-title="Web Development – NSDC"
                         data-description="A web development certification from NSDC covering fundamental concepts and practical skills used in modern web application development.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 04. DELOITTE -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-briefcase"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Cyber Job Simulation – Deloitte</h3>
-
                     <p>
                         Practical cybersecurity tasks through a
                         Deloitte job simulation experience.
                     </p>
-
                     <button class="details-btn" data-title="Cyber Job Simulation – Deloitte"
                         data-description="A Deloitte Cyber Job Simulation providing practical exposure to cybersecurity-related tasks and problem-solving activities in a simulated professional environment.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 05. TATA -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-robot"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Generative AI Job Simulation – TATA</h3>
-
                     <p>
                         Practical exposure to Generative AI concepts
                         through a professional job simulation.
                     </p>
-
                     <button class="details-btn" data-title="Generative AI Job Simulation – TATA"
                         data-description="A TATA Generative AI Job Simulation providing practical exposure to Generative AI concepts, analytical thinking and simulated professional tasks.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 06. MASTERCARD -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-credit-card"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-credit-card"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Cybersecurity Job Simulation – Mastercard</h3>
-
                     <p>
                         Cybersecurity learning and practical tasks
                         through a Mastercard job simulation.
                     </p>
-
                     <button class="details-btn" data-title="Cybersecurity Job Simulation – Mastercard"
                         data-description="A Mastercard Cybersecurity Job Simulation providing practical exposure to cybersecurity concepts and simulated professional security-related tasks.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 07. GOOGLE GEMINI -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fab fa-google"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fab fa-google"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Google Gemini Student Certification</h3>
-
                     <p>Generative AI &amp; Gemini learning certification.</p>
-
                     <button class="details-btn" data-title="Google Gemini Student Certification"
                         data-description="A certification focused on Google's Gemini and Generative AI concepts.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 08. POSTGRESQL -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-database"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>RDBMS PostgreSQL – IIT Bombay</h3>
-
                     <p>Database and relational database concepts.</p>
-
                     <button class="details-btn" data-title="RDBMS PostgreSQL – IIT Bombay"
                         data-description="Training focused on relational database management systems and PostgreSQL.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 09. NETWORK SIMULATOR -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fas fa-network-wired"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Network Simulator – IIT Bombay</h3>
-
                     <p>Networking concepts and simulator-based learning.</p>
-
                     <button class="details-btn" data-title="Network Simulator – IIT Bombay"
                         data-description="Training related to computer networking and network simulation concepts.">
                         View Details
                     </button>
-
                 </article>
 
-
                 <!-- 10. JAVA -->
-
-                <article class="cert-card featured reveal" data-category="featured">
-
-                    <div class="cert-icon">
-                        <i class="fab fa-java"></i>
-                    </div>
-
+                <article class="cert-card featured reveal spot tilt" data-category="featured">
+                    <div class="cert-icon"><i class="fab fa-java"></i></div>
                     <span class="cert-badge">FEATURED</span>
-
                     <h3>Java Training – IIT Bombay</h3>
-
                     <p>Java programming and application development.</p>
-
                     <button class="details-btn" data-title="Java Training – IIT Bombay"
                         data-description="Java programming training covering core programming concepts.">
                         View Details
                     </button>
-
                 </article>
 
+                <!-- ▲▲▲ PASTE NEW CERTIFICATE CARDS ABOVE THIS LINE ▲▲▲ -->
 
-                <!-- 11. ADDITIONAL CERTIFICATIONS -->
-
-                <article class="cert-card reveal" data-category="additional">
-
-                    <div class="cert-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-
+                <!-- 11. ADDITIONAL CERTIFICATIONS (link to Google Drive folder) -->
+                <article class="cert-card cert-wide reveal spot" data-category="additional">
+                    <div class="cert-icon"><i class="fas fa-award"></i></div>
                     <span class="cert-badge additional-badge">60+</span>
-
-                    <h3>Additional Certifications</h3>
-
-                    <p>
-                        60+ certifications covering AI, ML, Generative AI,
-                        programming, databases, web development,
-                        cybersecurity and professional skills.
-                    </p>
-
+                    <div class="cert-wide-text">
+                        <h3>Additional Certifications</h3>
+                        <p>
+                            60+ certifications covering AI, ML, Generative AI,
+                            programming, databases, web development,
+                            cybersecurity and professional skills.
+                        </p>
+                    </div>
                     <a href="https://drive.google.com/drive/folders/1HOzLEu2NY2yk3ezYx0WLTDwAl7zBQ2q2?usp=sharing"
                         class="details-btn" target="_blank" rel="noopener noreferrer"
                         aria-label="View all certificates">
                         <span>View All Certificates</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
-
                 </article>
 
             </div>
 
         </section>
 
-        <!-- ================= PROJECTS ================= -->
+        <!-- =================================================================
+             PROJECTS                                        [ADD-PROJECT]
 
+             ► HOW TO ADD A NEW PROJECT
+               1. Copy everything between  "START PROJECT CARD"  and  "END PROJECT CARD"
+               2. Paste it just before the line "PASTE NEW PROJECT CARDS ABOVE"
+               3. Edit: data-category, icon, project-type, title, text,
+                  tech-stack chips and the data-* values on the button
+               4. The number (01, 02 …) and the "Projects" counter update automatically.
+
+               data-category values (use one or more, separated by a space):
+                   python | web | android | ai
+               → they match the filter buttons below (data-project-filter).
+               To create a NEW filter: add a button below with a new
+               data-project-filter="mytag" and use "mytag" in data-category.
+
+               OPTIONAL extras on the "View Project" button (shown in the pop-up):
+                   data-link="https://your-live-demo.com"   → "Live Demo" button
+                   data-github="https://github.com/you/repo" → "Source Code" button
+
+             --------------------- START PROJECT CARD (template) ---------------------
+             <article class="project-card reveal spot tilt" data-category="web python">
+                 <div class="project-number">08</div>
+                 <div class="project-icon"><i class="fas fa-laptop-code"></i></div>
+                 <div class="project-content">
+                     <p class="project-type">WEB APPLICATION</p>
+                     <h3>Project Name</h3>
+                     <p>Short description shown on the card.</p>
+                     <div class="tech-stack">
+                         <span>Python</span>
+                         <span>Django</span>
+                     </div>
+                     <button class="project-details" data-title="Project Name"
+                         data-description="Longer description shown in the pop-up."
+                         data-tech="Python • Django • HTML"
+                         data-link="" data-github="">
+                         <span>View Project</span>
+                         <i class="fas fa-arrow-right"></i>
+                     </button>
+                 </div>
+             </article>
+             ---------------------- END PROJECT CARD (template) ----------------------
+        ================================================================== -->
         <section id="projects" class="section">
 
             <div class="section-heading reveal">
@@ -751,310 +887,187 @@
                 <span class="section-number">04</span>
 
                 <div>
-                    <p class="section-label">WHAT I'VE BUILT</p>
+                    <p class="section-label" data-scramble>WHAT I'VE BUILT</p>
                     <h2>Featured <span>Projects</span></h2>
                 </div>
 
             </div>
 
-
-            <div class="filter-buttons reveal">
-
-                <button class="project-filter active" data-project-filter="all">
-                    All
-                </button>
-
-                <button class="project-filter" data-project-filter="python">
-                    Python
-                </button>
-
-                <button class="project-filter" data-project-filter="web">
-                    Web
-                </button>
-
-                <button class="project-filter" data-project-filter="android">
-                    Android
-                </button>
-
-                <button class="project-filter" data-project-filter="ai">
-                    AI / ML
-                </button>
-
+            <div class="filter-buttons reveal" role="group" aria-label="Filter projects">
+                <button class="project-filter active" data-project-filter="all">All</button>
+                <button class="project-filter" data-project-filter="python">Python</button>
+                <button class="project-filter" data-project-filter="web">Web</button>
+                <button class="project-filter" data-project-filter="android">Android</button>
+                <button class="project-filter" data-project-filter="ai">AI / ML</button>
             </div>
 
-
-            <div class="project-container">
-
+            <div class="project-container" data-stagger>
 
                 <!-- PROJECT 01 -->
-                <article class="project-card reveal" data-category="ai python">
-
+                <article class="project-card reveal spot tilt" data-category="ai python">
                     <div class="project-number">01</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-robot"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">AI / PYTHON</p>
-
                         <h3>Real and Interactive AI Chatbot</h3>
-
                         <p>
                             An interactive chatbot project designed to
                             provide intelligent responses and create
                             a conversational user experience.
                         </p>
-
                         <div class="tech-stack">
                             <span>Python</span>
                             <span>AI</span>
                             <span>API</span>
                         </div>
-
                         <button class="project-details" data-title="Real and Interactive AI Chatbot"
                             data-description="An AI-powered conversational project focused on interactive communication and intelligent responses."
                             data-tech="Python • AI • API">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
-
-
                 <!-- PROJECT 02 -->
-                <article class="project-card reveal" data-category="ai python">
-
+                <article class="project-card reveal spot tilt" data-category="ai python">
                     <div class="project-number">02</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-chart-line"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">MACHINE LEARNING</p>
-
                         <h3>Student Performance Prediction</h3>
-
                         <p>
                             A machine learning project designed to
                             analyze student information and predict
                             academic performance.
                         </p>
-
                         <div class="tech-stack">
                             <span>Python</span>
                             <span>ML</span>
                             <span>Scikit-learn</span>
                         </div>
-
                         <button class="project-details" data-title="Student Performance Prediction"
                             data-description="A machine learning project that uses student-related data to explore and predict academic performance."
                             data-tech="Python • Machine Learning • Scikit-learn">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
-
-
                 <!-- PROJECT 03 -->
-                <article class="project-card reveal" data-category="web python">
-
+                <article class="project-card reveal spot tilt" data-category="web python">
                     <div class="project-number">03</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-user-check"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-user-check"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">WEB APPLICATION</p>
-
                         <h3>Smart Student Attendance Management</h3>
-
                         <p>
                             A student attendance management system
                             designed to simplify attendance tracking
                             and organization.
                         </p>
-
                         <div class="tech-stack">
                             <span>Python</span>
                             <span>Django</span>
                             <span>Web</span>
                         </div>
-
                         <button class="project-details" data-title="Smart Student Attendance Management"
                             data-description="A web-based attendance management system designed to make student attendance tracking more organized and easier to manage."
                             data-tech="Python • Django • HTML • CSS">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
-
-
                 <!-- PROJECT 04 -->
-                <article class="project-card reveal" data-category="android">
-
+                <article class="project-card reveal spot tilt" data-category="android">
                     <div class="project-number">04</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-mobile-screen-button"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-mobile-screen-button"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">ANDROID APPLICATION</p>
-
                         <h3>Student Task Manager Android App</h3>
-
                         <p>
                             A mobile application concept for organizing
                             student tasks and improving daily productivity.
                         </p>
-
                         <div class="tech-stack">
                             <span>Android</span>
                             <span>Java</span>
                             <span>UI</span>
                         </div>
-
                         <button class="project-details" data-title="Student Task Manager Android App"
                             data-description="An Android application focused on helping students organize and manage their daily tasks through a simple mobile interface."
                             data-tech="Android • Java • UI">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
-
-
                 <!-- PROJECT 05 -->
-                <article class="project-card reveal" data-category="web">
-
+                <article class="project-card reveal spot tilt" data-category="web">
                     <div class="project-number">05</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-keyboard"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-keyboard"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">WEB APPLICATION</p>
-
                         <h3>TypeMaster India</h3>
-
                         <p>
                             A professional typing practice platform built for
                             Indian government exam aspirants, featuring timed
                             typing tests, difficulty levels, performance
                             analytics, achievements and downloadable certificates.
                         </p>
-
                         <div class="tech-stack">
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-
                         <button class="project-details" data-title="TypeMaster India"
                             data-description="A frontend typing practice and government-exam preparation platform with timed tests, difficulty levels, WPM and accuracy tracking, performance history, achievements, leaderboard features and downloadable practice certificates."
                             data-tech="HTML • CSS • JavaScript">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
-
-
                 <!-- PROJECT 06 -->
-                <article class="project-card reveal" data-category="web">
-
+                <article class="project-card reveal spot tilt" data-category="web">
                     <div class="project-number">06</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-list-check"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-list-check"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">WEB APPLICATION</p>
-
                         <h3>TaskFlow</h3>
-
                         <p>
                             A clean and user-friendly task management web application
                             designed to help users organize their daily tasks with
                             an intuitive interface, task editing, deletion and
                             simple productivity-focused workflow.
                         </p>
-
                         <div class="tech-stack">
                             <span>React</span>
                             <span>JavaScript</span>
                             <span>CSS</span>
                             <span>Node.js</span>
                         </div>
-
                         <button class="project-details" data-title="TaskFlow"
                             data-description="A simple and responsive task management web application built with React, featuring task creation, editing and deletion with a clean user interface designed for everyday productivity and easy task organization."
                             data-tech="React • JavaScript • CSS • Node.js">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
-
-
                 <!-- PROJECT 07 - KNIGHTORA -->
-                <article class="project-card reveal" data-category="web ai">
-
+                <article class="project-card reveal spot tilt" data-category="web ai">
                     <div class="project-number">07</div>
-
-                    <div class="project-icon">
-                        <i class="fas fa-chess-knight"></i>
-                    </div>
-
+                    <div class="project-icon"><i class="fas fa-chess-knight"></i></div>
                     <div class="project-content">
-
                         <p class="project-type">AI / CHESS WEB PLATFORM</p>
-
                         <h3>Knightora</h3>
-
                         <p>
                             A professional chess web platform built for chess
                             enthusiasts, featuring AI opponents across Easy,
@@ -1062,7 +1075,6 @@
                             ratings, game history, statistics and intelligent
                             chess gameplay.
                         </p>
-
                         <div class="tech-stack">
                             <span>JavaScript</span>
                             <span>Node.js</span>
@@ -1070,28 +1082,27 @@
                             <span>SQLite</span>
                             <span>Chess AI</span>
                         </div>
-
                         <button class="project-details" data-title="Knightora"
                             data-description="Knightora is a full-stack chess platform designed for chess enthusiasts. It provides interactive chess gameplay against AI opponents with Easy, Medium and Hard difficulty levels, secure user authentication, ratings, game history, statistics, move tracking, game results and a responsive modern chess interface."
                             data-tech="JavaScript • Node.js • Express • SQLite • Chess AI"
                             data-category="AI / Chess Web Platform">
-
                             <span>View Project</span>
                             <i class="fas fa-arrow-right"></i>
-
                         </button>
-
                     </div>
-
                 </article>
 
+                <!-- ▲▲▲ PASTE NEW PROJECT CARDS ABOVE THIS LINE ▲▲▲ -->
 
             </div>
 
         </section>
 
-        <!-- ================= CONTACT ================= -->
-
+        <!-- =================================================================
+             CONTACT                                        [EDIT-CONTACT]
+             Email is also set in script.js → CONFIG.email (used by the
+             "Copy Email" button and the form).
+        ================================================================== -->
         <section id="contact" class="section">
 
             <div class="section-heading reveal">
@@ -1099,7 +1110,7 @@
                 <span class="section-number">05</span>
 
                 <div>
-                    <p class="section-label">LET'S CONNECT</p>
+                    <p class="section-label" data-scramble>LET'S CONNECT</p>
                     <h2>Contact <span>Me</span></h2>
                 </div>
 
@@ -1107,7 +1118,7 @@
 
             <div class="contact-grid">
 
-                <div class="contact-info reveal">
+                <div class="contact-info reveal" data-reveal="left">
 
                     <div class="contact-intro">
                         <span class="mini-label">HAVE A PROJECT?</span>
@@ -1124,7 +1135,7 @@
                         </p>
                     </div>
 
-                    <div class="contact-item">
+                    <div class="contact-item spot">
 
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
@@ -1139,42 +1150,44 @@
 
                     </div>
 
-                    <button id="copyEmail" class="copy-email">
+                    <button id="copyEmail" class="copy-email magnetic">
                         <i class="fas fa-copy"></i>
                         Copy Email
                     </button>
 
                 </div>
 
-                <form id="contactForm" class="contact-form glass-card reveal">
+                <!-- Form: validated in script.js. Opens the visitor's email app with the
+                     message pre-filled, or posts to Formspree if CONFIG.formEndpoint is set. -->
+                <form id="contactForm" class="contact-form glass-card reveal" data-reveal="right" novalidate>
 
                     <div class="input-group">
-
+                        <input type="text" id="name" name="name" placeholder="Enter your name" autocomplete="name"
+                            required>
                         <label for="name">Your Name</label>
-
-                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
+                        <small class="field-error" aria-live="polite"></small>
                     </div>
 
                     <div class="input-group">
-
+                        <input type="email" id="email" name="email" placeholder="Enter your email"
+                            autocomplete="email" inputmode="email" required>
                         <label for="email">Your Email</label>
-
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
+                        <small class="field-error" aria-live="polite"></small>
                     </div>
 
                     <div class="input-group">
-
-                        <label for="message">Message</label>
-
                         <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..."
                             required></textarea>
-
+                        <label for="message">Message</label>
+                        <small class="field-error" aria-live="polite"></small>
                     </div>
 
-                    <button type="submit" class="btn primary-btn submit-btn">
-                        <span>Send Message</span>
+                    <!-- Spam trap: real people never see or fill this -->
+                    <input type="text" name="website" class="hp-field" tabindex="-1" autocomplete="off"
+                        aria-hidden="true">
+
+                    <button type="submit" class="btn primary-btn submit-btn magnetic">
+                        <span class="submit-label">Send Message</span>
                         <i class="fas fa-paper-plane"></i>
                     </button>
 
@@ -1186,8 +1199,9 @@
 
     </main>
 
-    <!-- ================= FOOTER ================= -->
-
+    <!-- =====================================================================
+         FOOTER                                          [EDIT-FOOTER]
+    ====================================================================== -->
     <footer>
 
         <div class="footer-content">
@@ -1202,20 +1216,19 @@
 
             <div class="footer-socials">
 
-
-
-                <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/panwar-sandeepsingh-209593387/" aria-label="LinkedIn"
+                    target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
 
                 <a href="mailto:sandeepsinghpanwar1906@gmail.com" aria-label="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
+
                 <a href="https://github.com/sandeepsinghpanwar19/" aria-label="GitHub" target="_blank"
                     rel="noopener noreferrer">
                     <i class="fab fa-github"></i>
                 </a>
-
 
             </div>
 
@@ -1227,31 +1240,50 @@
 
     </footer>
 
-   
+    <!-- =====================================================================
+         DETAILS POP-UP (shared by certificates AND projects)
+         Filled by script.js. On phones it slides up like a bottom sheet.
+         (This element was missing in the old version — it is why the
+          "View Details" buttons did not work before.)
+    ====================================================================== -->
+    <div id="detailsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-box">
+            <span class="modal-handle" aria-hidden="true"></span>
 
-    <!-- ================= TOAST ================= -->
+            <button class="modal-close" aria-label="Close details"><i class="fas fa-xmark"></i></button>
 
-    <div id="toast" class="toast">
+            <div class="modal-icon" id="modalIcon"><i class="fas fa-award"></i></div>
+            <p class="modal-kicker" id="modalKicker">Details</p>
+            <h3 id="modalTitle">Title</h3>
+            <p id="modalDescription" class="modal-description">Description</p>
 
-        <i class="fas fa-circle-check"></i>
+            <div id="modalTech" class="modal-tech"></div>
 
-        <span id="toastMessage">
-            Success!
-        </span>
-
+            <!-- Buttons appear only when data-link / data-github exist -->
+            <div id="modalActions" class="modal-actions"></div>
+        </div>
     </div>
 
-    <!-- ================= BACK TO TOP ================= -->
+    <!-- =====================================================================
+         TOAST (small notification) + BACK TO TOP
+    ====================================================================== -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <i class="fas fa-circle-check"></i>
+        <span id="toastMessage">Success!</span>
+    </div>
 
     <button id="backToTop" class="back-to-top" aria-label="Back to top">
-
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+            <circle class="btt-track" cx="24" cy="24" r="21" />
+            <circle class="btt-ring" id="bttRing" cx="24" cy="24" r="21" />
+        </svg>
         <i class="fas fa-arrow-up"></i>
-
     </button>
 
-    <!-- ================= SCRIPTS ================= -->
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <!-- =====================================================================
+         SCRIPT — no external libraries needed any more
+         (the particle background is built in, so the site loads faster)
+    ====================================================================== -->
     <script src="script.js"></script>
 
 </body>
