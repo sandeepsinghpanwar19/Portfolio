@@ -845,6 +845,9 @@ html.cursor-hover #cursor-ring {
     display: flex;
     flex-direction: column;
     gap: .05em;
+    white-space: nowrap;
+    width: max-content;
+    max-width: 100%;
 }
 
 .name-line {
